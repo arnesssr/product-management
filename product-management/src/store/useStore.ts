@@ -8,6 +8,7 @@ import { AuditService } from '../features/audit/services/auditService'
 import type { AuditEventType, AuditSeverity, AuditLog } from '../types/auditTypes'
 import { eventBus } from '@/lib/eventBus'
 import { getISOString, generateId, getCurrentTimestamp } from '../utils/timestampUtils'
+import { storefrontService } from '@/services/storefrontService'
 
 export interface CategoryField {
   name: string;

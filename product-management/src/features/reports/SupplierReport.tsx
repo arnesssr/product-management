@@ -42,7 +42,7 @@ export function SupplierReport() {
               <TableRow key={supplier.id}>
                 <TableCell>{supplier.name}</TableCell>
                 <TableCell>
-                  {purchaseOrders.filter(order => order.supplierId === supplier.id).length}
+                  {purchaseOrders.filter((order: { supplierId: string }) => order.supplierId === supplier.id).length}
                 </TableCell>
                 <TableCell>{supplier.lastOrderDate || '—'}</TableCell>
                 <TableCell>{supplier.status}</TableCell>

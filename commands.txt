@@ -1,0 +1,56 @@
+# Product Management System Setup Commands
+
+## Initial Setup
+# Install dependencies for both projects
+pnpm install
+
+## Development
+# Run admin dashboard (product-management)
+cd product-management
+pnpm dev     # Runs on http://localhost:5173
+
+# Run storefront in a separate terminal
+cd storefront
+pnpm dev     # Runs on http://localhost:5174
+
+## Build Commands
+# Build admin dashboard
+cd product-management
+pnpm build
+
+# Build storefront
+cd storefront
+pnpm build
+
+## Project Structure
+product-management/  # Admin dashboard
+├── src/            # Source code
+└── ...
+
+storefront/         # E-commerce frontend
+├── src/           # Source code
+└── ...
+
+## Important Notes
+1. Both applications need to run simultaneously for full functionality
+2. Admin dashboard publishes products to localStorage (development)
+3. Storefront reads products from localStorage (development)
+4. For production, replace localStorage with proper database
+
+## Environment Variables Required
+VITE_CLERK_PUBLISHABLE_KEY=your_clerk_key    # Auth provider key
+
+## Common Issues
+1. If storefront shows blank page:
+   - Ensure both servers are running
+   - Check localStorage for published products
+   - Verify correct ports (5173 for admin, 5174 for store)
+
+2. If publishing fails:
+   - Check browser console for errors
+   - Verify product status is 'published'
+   - Clear localStorage and try again
+
+## Data Flow
+Admin Dashboard -> localStorage -> Storefront
+(In production: Admin Dashboard -> Database -> Storefront)

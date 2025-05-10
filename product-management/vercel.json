@@ -1,7 +1,24 @@
 {
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/**/*.ts",
+      "use": "@vercel/node"
+    }
+  ],
+  "env": {
+    "DATABASE_URL": "@database-url",
+    "CLERK_SECRET_KEY": "@clerk-secret-key",
+    "CLERK_PUBLISHABLE_KEY": "@clerk-publishable-key"
+  },
   "buildCommand": "pnpm build",
-  "installCommand": "pnpm install",
-  "framework": "vite",
-  "outputDirectory": "dist"
+  "outputDirectory": "dist",
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
+    },
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "dest": "/" }
+  ]
 }
